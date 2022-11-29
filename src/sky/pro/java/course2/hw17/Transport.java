@@ -30,7 +30,7 @@ abstract public class Transport implements Competing {
 
         public abstract void startMoving ();
         public abstract void endMoving ();
-
+        public abstract void printType();
 
         @Override
         public String toString () {

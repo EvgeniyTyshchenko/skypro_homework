@@ -1,8 +1,21 @@
 package sky.pro.java.course2.hw17;
 
+import sky.pro.java.course2.hw17.enums.Capacity;
+
 public class Bus <T extends DriverCatD> extends Transport {
-    public Bus(String brand, String model, double engineVolume) {
+    private Capacity capacity;
+
+    public Bus(String brand, String model, double engineVolume, Capacity capacity) {
         super(brand, model, engineVolume);
+        this.capacity = capacity;
+    }
+
+    public Capacity getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Capacity capacity) {
+        this.capacity = capacity == null ? Capacity.SMALL : capacity;
     }
 
     @Override
@@ -31,5 +44,16 @@ public class Bus <T extends DriverCatD> extends Transport {
     }
     public void participate(T driver) {
         System.out.println("Водитель " + driver.getFullName() + " управляет автомобилем " + this + " и будет участвовать в заезде");
+    }
+    public void printType() {
+        if (capacity != null) {
+            System.out.println(capacity);
+        } else {
+            System.out.println("Данных по транспортному средству недостаточно");
+        }
+    }
+    @Override
+    public String toString () {
+        return "Марка: " + getBrand() + ", модель: " + getModel() + ", объем двигателя: " + getEngineVolume() + " л, " + capacity;
     }
 }
