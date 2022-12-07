@@ -4,7 +4,6 @@ import sky.pro.java.course2.hw20.Car;
 
 public class DriverCatB extends Driver {
     private String fullName;
-    private Car car;
 
     public DriverCatB(String fullName, String havingDriverLicense, double experience) {
         super(fullName, havingDriverLicense, experience);
