@@ -10,7 +10,7 @@ public class Task2 {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("Ошибка!");;
+            System.out.println("Ошибка!");
         }
     }
     public static void foo () throws IOException {
