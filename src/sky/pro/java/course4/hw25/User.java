@@ -30,7 +30,7 @@ public class User {
 
     public void setEmail(String email) {
         if(email == null){
-            throw new RuntimeException("Поле email не должно быть пустым!");
+            throw new RuntimeException("Поле email не должно быть пустым.");
         } else {
             this.email = email;
         }

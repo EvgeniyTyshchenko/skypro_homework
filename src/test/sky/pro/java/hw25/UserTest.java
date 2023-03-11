@@ -12,7 +12,7 @@ public class UserTest {
     private static String LOGIN;
     private final static String LOGIN_NEW = "Evgeniy";
     private static String USER_EMAIL;
-    private final static String USER_EMAIL_NEW = "evgeniy@mail.ru";
+    private final static String USER_EMAIL_NEW = "evgeniy@yandex.ru";
     private final static String SYMBOL = "@";
     private final static String POINT = ".";
     public final static String VALID_EMAIL = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
