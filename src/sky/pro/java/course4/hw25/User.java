@@ -1,6 +1,7 @@
 package course4.hw25;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class User {
 
@@ -8,8 +9,8 @@ public class User {
     private String email;
 
     public User(String login, String email) {
-        this.login = login;
-        this.email = email;
+        setLogin(login);
+        setEmail(email);
     }
 
     public String getLogin() {
@@ -18,7 +19,7 @@ public class User {
 
     public void setLogin(String login) {
         if (login == null || login.equals(email)) {
-            throw new RuntimeException("Login не должен совпадать с email!");
+            throw new RuntimeException("Поле login должно быть корректным!");
         } else {
             this.login = login;
         }
@@ -29,8 +30,8 @@ public class User {
     }
 
     public void setEmail(String email) {
-        if(email == null){
-            throw new RuntimeException("Поле email не должно быть пустым.");
+        if (email == null || !Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$").matcher(email).matches()) {
+            throw new RuntimeException("Поле email должно быть корректным!");
         } else {
             this.email = email;
         }

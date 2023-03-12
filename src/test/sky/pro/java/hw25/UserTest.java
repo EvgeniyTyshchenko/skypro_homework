@@ -9,9 +9,7 @@ import java.util.regex.Pattern;
 
 public class UserTest {
 
-    private static String LOGIN;
     private final static String LOGIN_NEW = "Evgeniy";
-    private static String USER_EMAIL;
     private final static String USER_EMAIL_NEW = "evgeniy@yandex.ru";
     private final static String SYMBOL = "@";
     private final static String POINT = ".";
@@ -19,10 +17,9 @@ public class UserTest {
     private static User user;
 
     @Test
-    void shouldReturnNullLoginAndEmail() {
-        user = new User(null, null);
-        Assertions.assertNull(LOGIN, user.getLogin());
-        Assertions.assertNull(USER_EMAIL, user.getEmail());
+    void anExceptionShouldBeThrownIfLoginAndEmailAreNull() {
+        Assertions.assertThrows(RuntimeException.class, () -> user.setLogin(null));
+        Assertions.assertThrows(RuntimeException.class, () -> user.setEmail(null));
     }
 
     @BeforeEach
