@@ -19,8 +19,11 @@ public class CityDAOImpl implements CityDAO {
             statement.setInt(1, id);
 
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
 
+            if (!resultSet.next()) {
+                System.out.println("Пожалуйста, убедитесь, что id введен корректно!");
+                return null;
+            }
             return new City(resultSet.getString("city_name"));
         }
     }

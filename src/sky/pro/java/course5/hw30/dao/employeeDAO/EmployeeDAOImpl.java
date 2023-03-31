@@ -14,7 +14,7 @@ import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-    CityDAO cityDAO = new CityDAOImpl();
+    private final CityDAO cityDAO = new CityDAOImpl();
 
     @Override
     public Employee getEmployeeById(int id) throws SQLException {
@@ -23,8 +23,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setInt(1, id);
 
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
 
+            if (!resultSet.next()) {
+                System.out.println("Пожалуйста, убедитесь, что id введен корректно!");
+                return null;
+            }
             return new Employee(resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
                     resultSet.getString("gender"),
