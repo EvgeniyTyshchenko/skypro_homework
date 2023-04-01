@@ -9,12 +9,12 @@ public interface EmployeeDAO {
 
     Employee getEmployeeById(int id) throws SQLException;
 
-    void createEmployee(String first_name, String last_name, String gender, Integer age, Integer city_id) throws SQLException;
+    void createEmployee(String firstName, String lastName, String gender, Integer age, Integer cityId) throws SQLException;
 
     List<Employee> getAllEmployees() throws SQLException;
 
-    void updateEmployeeById(Integer id, String first_name, String last_name,
-                            String gender, Integer age, Integer city_id) throws SQLException;
+    void updateEmployeeById(Integer id, String firstName, String lastName,
+                            String gender, Integer age, Integer cityId) throws SQLException;
 
     void deleteEmployeeById(int id) throws SQLException;
 }

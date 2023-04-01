@@ -36,18 +36,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void createEmployee(String first_name, String last_name,
-                               String gender, Integer age, Integer city_id) throws SQLException {
+    public void createEmployee(String firstName, String lastName,
+                               String gender, Integer age, Integer cityId) throws SQLException {
         String query = "INSERT INTO employee (first_name, last_name, gender, age, city_id) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = Configuration.getConnection();
         PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setString(1, first_name);
-            statement.setString(2, last_name);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
             statement.setString(3, gender);
             statement.setInt(4, age);
-            statement.setInt(5, city_id);
+            statement.setInt(5, cityId);
 
             statement.executeUpdate();
             System.out.println("Работник добавлен!");
@@ -74,19 +74,19 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void updateEmployeeById(Integer id, String first_name, String last_name,
-                                   String gender, Integer age, Integer city_id) throws SQLException {
+    public void updateEmployeeById(Integer id, String firstName, String lastName,
+                                   String gender, Integer age, Integer cityId) throws SQLException {
         String query = "UPDATE employee SET first_name = (?), last_name =(?), gender = (?), age = (?), city_id = (?) WHERE id =(?)";
 
         try (Connection connection = Configuration.getConnection();
         PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(6, id);
-            statement.setString(1, first_name);
-            statement.setString(2, last_name);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
             statement.setString(3, gender);
             statement.setInt(4, age);
-            statement.setInt(5, city_id);
+            statement.setInt(5, cityId);
 
             statement.executeUpdate();
             System.out.println("Работник изменен!");
