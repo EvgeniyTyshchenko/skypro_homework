@@ -18,27 +18,27 @@ public class Employee {
         this.city = city;
     }
 
-    public Employee(String first_name, String last_name, String gender, City city) {
-        this.firstName = first_name;
-        this.lastName = last_name;
+    public Employee(String firstName, String lastName, String gender, City city) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.city = city;
     }
 
-    public String getFirst_name() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.firstName = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.lastName = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getGender() {
