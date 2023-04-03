@@ -2,79 +2,62 @@ package course5.hw31.dao.cityDAO;
 
 import course5.hw31.config.HibernateSessionFactoryUtil;
 import course5.hw31.model.City;
+import jakarta.persistence.EntityNotFoundException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CityDAOImpl implements CityDAO {
 
-//    @Override
-//    public City getCityById(int id) throws SQLException {
-//        try (Connection connection = HibernateSessionFactoryUtil.getConnection();
-//             PreparedStatement statement = connection.prepareStatement("SELECT * FROM city WHERE city_id = (?)")) {
-//            statement.setInt(1, id);
-//
-//            ResultSet resultSet = statement.executeQuery();
-//
-//            if (!resultSet.next()) {
-//                System.out.println("Пожалуйста, убедитесь, что id введен корректно!");
-//                return null;
-//            }
-//            return new City(resultSet.getString("city_name"));
-//        }
-//    }
-//
-//    @Override
-//    public void addNewCity(String cityName) throws SQLException {
-//        try (Connection connection = HibernateSessionFactoryUtil.getConnection();
-//             PreparedStatement statement = connection.prepareStatement("INSERT INTO city (city_name) VALUES (?)")) {
-//
-//            statement.setString(1, cityName);
-//            statement.executeUpdate();
-//            System.out.println("Город добавлен!");
-//        }
-//    }
-//
-//    @Override
-//    public List<City> getAllCities() throws SQLException {
-//        List<City> cityList = new ArrayList<>();
-//
-//        try (Connection connection = HibernateSessionFactoryUtil.getConnection();
-//             PreparedStatement statement = connection.prepareStatement("SELECT * FROM city")) {
-//
-//            ResultSet resultSet = statement.executeQuery();
-//            while (resultSet.next()) {
-//                cityList.add(new City(resultSet.getString("city_name")));
-//            }
-//        }
-//        return cityList;
-//    }
-//
-//    @Override
-//    public void updateCityById(Integer id, String cityName) throws SQLException {
-//        try (Connection connection = HibernateSessionFactoryUtil.getConnection();
-//             PreparedStatement statement = connection.prepareStatement("UPDATE city SET city_name = (?) WHERE city_id = (?)")) {
-//
-//            statement.setString(1, cityName);
-//            statement.setInt(2, id);
-//            statement.executeUpdate();
-//
-//            System.out.println("Город обновлён!");
-//        }
-//    }
-//
-//    @Override
-//    public void deleteCityById(Integer id) throws SQLException {
-//        try (Connection connection = HibernateSessionFactoryUtil.getConnection();
-//             PreparedStatement statement = connection.prepareStatement("DELETE FROM city WHERE city_id = ?")) {
-//
-//            statement.setInt(1, id);
-//            statement.executeUpdate();
-//            System.out.println("Город удалён!");
-//        }
-//    }
+    @Override
+    public City getCityById(Integer id) {
+        City city = HibernateSessionFactoryUtil.getSessionFactory().openSession().get(City.class, id);
+        if (city == null) {
+            throw new EntityNotFoundException("Объект не найден!");
+        } else {
+            return city;
+        }
+    }
+
+    @Override
+    public void addNewCity(City city) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();) {
+            Transaction transaction = session.beginTransaction();
+            session.save(city);
+            transaction.commit();
+            System.out.println("Город добавлен!");
+        }
+    }
+
+    @Override
+    public List<City> getAllCities() {
+        List<City> cities = (List<City>) HibernateSessionFactoryUtil
+                .getSessionFactory().openSession().createQuery("From City").list();
+        if (!cities.isEmpty()) {
+            return cities;
+        } else {
+            throw new EntityNotFoundException("Список городов пуст!");
+        }
+    }
+
+    @Override
+    public void updateCityById(City city) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(city);
+            transaction.commit();
+            System.out.println("Город обновлён!");
+        }
+    }
+
+    @Override
+    public void deleteCityById(City city) {
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(city);
+            transaction.commit();
+            System.out.println("Город удалён!");
+        }
+    }
 }

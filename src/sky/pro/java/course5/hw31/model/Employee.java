@@ -1,18 +1,17 @@
 package course5.hw31.model;
 
-
 import jakarta.persistence.*;
-import org.hibernate.annotations.Table;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "employee")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -26,11 +25,11 @@ public class Employee {
     @Column(name = "age")
     private Integer age;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "city_id")
+    @ManyToOne()
+    @JoinColumn(referencedColumnName = "id")
     private City city;
 
-    public Employee(int id, String firstName, String lastName, String gender, Integer age, City city) {
+    public Employee(Integer id, String firstName, String lastName, String gender, Integer age, City city) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,11 +38,16 @@ public class Employee {
         this.city = city;
     }
 
-    public Employee(String firstName, String lastName, String gender, City city) {
+    public Employee(String firstName, String lastName, String gender, Integer age, City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
+        this.age = age;
         this.city = city;
+    }
+
+    public Employee(Integer id) {
+        this.id = id;
     }
 
     public Employee() {
@@ -74,11 +78,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -92,7 +96,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + ", " + "пол: " + gender + ", город: " + city;
+        return id + ". " + firstName + " " + lastName + ", " + "пол: " + gender + ", город: " + city;
     }
 
     @Override

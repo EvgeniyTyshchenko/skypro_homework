@@ -1,33 +1,36 @@
 package course5.hw31.model;
 
-
 import jakarta.persistence.*;
-import org.hibernate.annotations.Table;
 
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "city")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "city_id")
-    private int id;
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(name = "city_name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Employee> employees;
 
-    public City(int id, String name) {
+    public City(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
     public City(String name) {
         this.name = name;
+    }
+
+    public City(Integer id) {
+        this.id = id;
     }
 
     public City() {
@@ -42,9 +45,17 @@ public class City {
         this.name = name;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
-        return name;
+        return id + ". " + name;
     }
 
     @Override
