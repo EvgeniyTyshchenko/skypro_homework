@@ -19,7 +19,7 @@ public class Application {
         System.out.println(cityDAO.getCityById(4));
 
 
-        cityDAO.addNewCity(new City( "Н.Новгород"));
+        cityDAO.addNewCity(new City( "Краснодар"));
         employeeDAO.createEmployee(new Employee("Юлия", "Никитина", "Ж", 43, new City(1)));
 
 
@@ -28,10 +28,10 @@ public class Application {
 
 
         employeeDAO.updateEmployeeById(new Employee(8, "Мария", "Кулагина","Ж", 63, new City(3)));
-        cityDAO.updateCityById(new City(4, "Кисловодск"));
+        cityDAO.updateCityById(new City(8, "Ставрополь"));
 
 
-        employeeDAO.deleteEmployeeById(new Employee(6));
+        employeeDAO.deleteEmployeeById(new Employee(11));
         cityDAO.deleteCityById(new City(7));
     }
 }
