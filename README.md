@@ -1,6 +1,6 @@
 ### [Repository for Skypro homeworks]()<br/>
 
-_**course 1:**_<br/>
+**course 1:**<br/>
 
 [hw1] Changed output<br/>
 [hw2] Variables part 1<br/>
@@ -17,7 +17,7 @@ _**course 1:**_<br/>
 other
 
 
-_**course 2:**_
+**course 2:**
 
 [hw14] OOP - introduction, object<br/>
 [hw15] OOP - encapsulation<br/>
@@ -30,20 +30,20 @@ _**course 2:**_
 other
 
 
-_**course 3:**<br/>_
+**course 3:**<br/>
 
 Introduction to Web Application Development<br/>
 https://github.com/EvgeniyTyshchenko/recipe_app
 
 
-_**course 4:**<br/>_
+**course 4:**<br/>
 
 [hw24] Stream API and Optional<br/>
 [hw25] Testing<br/>
 [hw26] Spring and Mockito<br/>
 
 
-_**course 5:**_
+**course 5:**
 
 [hw27] Introduction to SQL<br/>
 [hw28] Data sampling and nested queries<br/>
