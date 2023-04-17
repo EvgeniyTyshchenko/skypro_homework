@@ -50,3 +50,4 @@ https://github.com/EvgeniyTyshchenko/recipe_app
 [hw29] Working with multiple tables<br/>
 [hw30] JDBC<br/>
 [hw31] Hibernate: introduction, Entity<br/>
+[hw32] Hibernate: working with multiple tables + added tests
