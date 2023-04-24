@@ -1,6 +1,7 @@
 package course5.hw30.dao.cityDAO;
 
 import course5.hw30.config.Configuration;
+import course5.hw30.exceptions.ObjectNotFoundException;
 import course5.hw30.model.City;
 
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CityDAOImpl implements CityDAO {
 
@@ -21,8 +23,7 @@ public class CityDAOImpl implements CityDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (!resultSet.next()) {
-                System.out.println("Пожалуйста, убедитесь, что id введен корректно!");
-                return null;
+                throw new ObjectNotFoundException("Объект не найден!");
             }
             return new City(resultSet.getString("city_name"));
         }
