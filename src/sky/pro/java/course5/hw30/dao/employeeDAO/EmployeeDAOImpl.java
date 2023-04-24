@@ -3,6 +3,7 @@ package course5.hw30.dao.employeeDAO;
 import course5.hw30.config.Configuration;
 import course5.hw30.dao.cityDAO.CityDAO;
 import course5.hw30.dao.cityDAO.CityDAOImpl;
+import course5.hw30.exceptions.ObjectNotFoundException;
 import course5.hw30.model.Employee;
 
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
@@ -25,8 +27,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (!resultSet.next()) {
-                System.out.println("Пожалуйста, убедитесь, что id введен корректно!");
-                return null;
+                throw new ObjectNotFoundException("Объект не найден!");
             }
             return new Employee(resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
